@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if ("hid" in navigator) {
         navigator.hid.addEventListener('disconnect', hid_on_disconnect);
     } else {
-        display_error("Your browser doesn't support WebHID. Try Chrome (desktop version) or a Chrome-based browser.");
+        display_error("您的浏览器不支持 WebHID，请使用桌面版 Chrome 或基于 Chrome 的浏览器。");
     }
 
     setup_examples();
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
     target_modal = new bootstrap.Modal(document.getElementById('target_usage_modal'), {});
     setup_macros();
     setup_expressions();
-    set_ui_state();
+    load_example(0);
 });
 
 async function open_device() {
@@ -249,7 +249,7 @@ async function open_device() {
         if (config_interface !== undefined) {
             device = config_interface;
             if (!device.opened) {
-                await device.open().catch((err) => { display_error(err + "\nIf you're on Linux, you might need to give yourself permissions to the appropriate /dev/hidraw* device."); });
+                await device.open().catch((err) => { display_error(err + "\n如果您使用的是 Linux，可能需要为自己授予相应的 /dev/hidraw* 设备权限。"); });
             }
             success = device.opened;
             success &&= await check_device_version();
@@ -560,10 +560,10 @@ async function save_to_device() {
                 }, 3000);
                 break;
             case PERSIST_CONFIG_CONFIG_TOO_BIG:
-                display_error('Configuration too big to persist.');
+                display_error('配置过大，无法保存到设备。');
                 break;
             default:
-                throw new Error('Unknown PERSIST_CONFIG return code (' + return_code + ').');
+                throw new Error('未知的 PERSIST_CONFIG 返回代码 (' + return_code + ')。');
         }
     } catch (e) {
         display_error(e);
@@ -675,7 +675,7 @@ function set_macro_previews() {
         const macro_element = document.getElementById('macro_' + i);
         const preview = Array.from(macro_element.querySelectorAll('.macro_entry'),
             (entry_element) => Array.from(entry_element.querySelectorAll('.macro_item_usage .button_label'),
-                (item_element) => item_element.innerText == "Nothing" ? "∅" : item_element.innerText
+                (item_element) => item_element.innerText == "无操作" ? "∅" : item_element.innerText
             ).join('+')).join(', ');
         macro_element.querySelector('.macro_preview').innerText = preview;
     }
@@ -849,12 +849,12 @@ function upload_json() {
 }
 
 async function flash_firmware() {
-    display_error("HID Remapper should now be in firmware flashing mode. Copy UF2 file to the drive that appeared. If you don't want to flash new firmware at this time, just unplug and replug the device.");
+    display_error("HID Remapper 现在应已进入固件烧录模式。请将 UF2 文件复制到新出现的磁盘驱动器上。如果此时不想烧录新固件，直接重新插拔设备即可。");
     await send_feature_command(RESET_INTO_BOOTSEL);
 }
 
 async function flash_b_side() {
-    display_error("Side B should now be flashed with firmware version matching side A. Disconnect and reconnect the device.");
+    display_error("现在应为 B 面烧录与 A 面匹配的固件版本。请断开并重新连接设备。");
     await send_feature_command(FLASH_B_SIDE);
 }
 
@@ -935,7 +935,7 @@ async function read_config_feature(fields = []) {
                 delay *= 2;
                 continue;
             }
-            throw new Error('Error in read_config_feature (given up retrying).');
+            throw new Error('read_config_feature 出错（已放弃重试）。');
         }
     }
     check_crc(data);
@@ -980,7 +980,7 @@ function display_error_html(message) {
 
 function check_crc(data) {
     if (data.getUint32(CONFIG_SIZE - 4, true) != crc32(data, CONFIG_SIZE - 4)) {
-        throw new Error('CRC error.');
+        throw new Error('CRC 校验错误。');
     }
 }
 
@@ -990,13 +990,13 @@ function add_crc(data) {
 
 function check_json_version(config_version) {
     if (!([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].includes(config_version))) {
-        throw new Error("Incompatible version.");
+        throw new Error("版本不兼容。");
     }
 }
 
 function check_received_version(config_version) {
     if (config_version != CONFIG_VERSION) {
-        throw new Error("Incompatible version.");
+        throw new Error("版本不兼容。");
     }
 }
 
@@ -1012,15 +1012,15 @@ async function check_device_version() {
             if (version == CONFIG_VERSION) {
                 return true;
             }
-            display_error_html('<p>Incompatible version (' + version + ').</p>' +
-                '<p>Please consider upgrading your HID Remapper firmware to the <a href="https://github.com/jfedor2/hid-remapper/releases/latest">latest version</a>.</p>' +
-                '<p>Alternatively, click <a href="v' + version + '/">here</a> for an older version of the configuration tool that should be compatible with your device.</p>' +
-                '<p class="mb-0">(You can also use the older version of the configuration tool to put your HID Remapper in firmware flashing mode and upgrade the firmware.)</p>');
+            display_error_html('<p>版本不兼容 (' + version + ')。</p>' +
+                '<p>建议将 HID Remapper 固件升级到<a href="https://github.com/jfedor2/hid-remapper/releases/latest">最新版本</a>。</p>' +
+                '<p>也可以点击<a href="v' + version + '/">这里</a>使用与您的设备兼容的旧版配置工具。</p>' +
+                '<p class="mb-0">（您也可以用旧版配置工具让 HID Remapper 进入固件烧录模式，从而升级固件。）</p>');
             return false;
         }
     }
 
-    display_error_html('<p>Incompatible version.</p><p class="mb-0">You might have a newer version of the firmware on your HID Remapper than this configuration tool was made for.</p>');
+    display_error_html('<p>版本不兼容。</p><p class="mb-0">您的 HID Remapper 固件可能比本配置工具支持的版本更新。</p>');
     return false;
 }
 
@@ -1082,21 +1082,21 @@ function expression_onchange(i) {
         }
         if (op.toLowerCase().startsWith('0x')) {
             if (isNaN(parseInt(op, 16))) {
-                throw new Error('Invalid expression: "' + op + '"');
+                throw new Error('表达式无效: "' + op + '"');
             }
             return op;
         }
         if (/^[0-9-]/.test(op)) {
             const x = parseFloat(op);
             if (isNaN(x)) {
-                throw new Error('Invalid expression: "' + op + '"');
+                throw new Error('表达式无效: "' + op + '"');
             }
             return Math.round(x * 1000).toString();
         }
         if ((op.toUpperCase() in ops) && !['PUSH', 'PUSH_USAGE'].includes(op.toUpperCase())) {
             return op.toLowerCase();
         }
-        throw new Error('Invalid expression: "' + op + '"');
+        throw new Error('表达式无效: "' + op + '"');
     }
 
     return function () {
@@ -1292,7 +1292,7 @@ function setup_macros() {
         let clone = template.content.cloneNode(true).firstElementChild;
         clone.id = 'macro_' + i;
         clone.querySelector('.accordion-button').setAttribute('data-bs-target', '#collapse_' + i);
-        clone.querySelector('.accordion-button').querySelector('.macro_name').innerText = 'Macro ' + (i + 1);
+        clone.querySelector('.accordion-button').querySelector('.macro_name').innerText = '宏 ' + (i + 1);
         clone.querySelector('.accordion-collapse').id = 'collapse_' + i;
         clone.querySelector('.add_macro_entry').addEventListener("click", () => {
             const entry_element = add_macro_entry(clone);
@@ -1363,7 +1363,7 @@ function setup_expressions() {
     for (let i = 0; i < NEXPRESSIONS; i++) {
         let clone = template.content.cloneNode(true).firstElementChild;
         clone.id = 'expression_' + i;
-        clone.querySelector('.expression_label').innerText = 'Expression ' + (i + 1);
+        clone.querySelector('.expression_label').innerText = '表达式 ' + (i + 1);
         clone.querySelector('.expression_input').addEventListener("input", expression_onchange(i));
         expr_container.appendChild(clone);
     }
@@ -1523,7 +1523,7 @@ function readable_usage_name(usage, default_to_hex = true) {
         return usages['source_extra'][usage]['name'];
     }
     if (((usage & 0xFFFF0000) >>> 0) == BUTTON_USAGE_PAGE) {
-        return 'Button ' + (usage & 0xFFFF);
+        return '按钮 ' + (usage & 0xFFFF);
     }
     if (((usage & 0xFFFF0000) >>> 0) == MIDI_USAGE_PAGE) {
         const status = (usage >> 8) & 0xF0;
@@ -1606,7 +1606,7 @@ function expr_to_elems(expr) {
         if (elem.toUpperCase() in ops) {
             return [ops[elem.toUpperCase()]];
         }
-        throw new Error('Invalid expression: "' + elem + '"');
+        throw new Error('表达式无效: "' + elem + '"');
     }
 
     return [...expr.matchAll(expr_re).map(x => x[2])].join('').split(/\s+/).filter((x) => (x.length > 0)).map(convert_elem);

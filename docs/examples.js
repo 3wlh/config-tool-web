@@ -1,6 +1,31 @@
 const examples = [
     {
-        'description': 'map caps lock to control',
+        'description': '将 A 和 Caps Lock 交换映射',
+        'config': {
+            "version": 3,
+            "unmapped_passthrough": true,
+            "partial_scroll_timeout": 1000000,
+            "interval_override": 0,
+            "mappings": [
+                {
+                    "source_usage": "0x00070004",
+                    "target_usage": "0x00070039",
+                    "layer": 0,
+                    "sticky": false,
+                    "scaling": 1000
+                },
+                {
+                    "source_usage": "0x00070039",
+                    "target_usage": "0x00070004",
+                    "layer": 0,
+                    "sticky": false,
+                    "scaling": 1000
+                }
+            ]
+        }
+    },
+    {
+        'description': '将 Caps Lock 映射为 Ctrl',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -18,7 +43,7 @@ const examples = [
         }
     },
     {
-        'description': 'swap left/right mouse buttons',
+        'description': '交换鼠标左右键',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -43,7 +68,7 @@ const examples = [
         }
     },
     {
-        'description': 'middle button is ctrl-c, right button is ctrl-v',
+        'description': '中键为 Ctrl-C，右键为 Ctrl-V',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -82,7 +107,7 @@ const examples = [
         }
     },
     {
-        'description': 'invert scroll wheel direction',
+        'description': '反转滚轮方向',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -100,7 +125,7 @@ const examples = [
         }
     },
     {
-        'description': 'moving the mouse scrolls when middle button held',
+        'description': '按住中键时移动鼠标进行滚动',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -132,7 +157,7 @@ const examples = [
         }
     },
     {
-        'description': 'mouse precision mode when middle button held',
+        'description': '按住中键时启用鼠标精准模式',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -164,7 +189,7 @@ const examples = [
         }
     },
     {
-        'description': 'rotate mouse by 90 degrees',
+        'description': '鼠标旋转 90 度',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -189,7 +214,7 @@ const examples = [
         }
     },
     {
-        'description': 'rotate mouse by 30 degrees',
+        'description': '鼠标旋转 30 度',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -228,7 +253,7 @@ const examples = [
         }
     },
     {
-        'description': 'arrows act as mouse when caps lock held',
+        'description': '按住 Caps Lock 时方向键作为鼠标使用',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -281,7 +306,7 @@ const examples = [
         }
     },
     {
-        'description': 'right button is left button with drag-lock',
+        'description': '右键为带拖拽锁定的左键',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -299,7 +324,7 @@ const examples = [
         }
     },
     {
-        'description': 'one button drag-lock (simple): long press to engage, long press to disengage',
+        'description': '单键拖拽锁定（简单版）：长按开启，长按关闭',
         'config': {
             "version": 12,
             "unmapped_passthrough_layers": [
@@ -396,7 +421,7 @@ const examples = [
         }
     },
     {
-        'description': 'one button drag-lock (advanced): long press to engage, any click to disengage',
+        'description': '单键拖拽锁定（进阶版）：长按开启，任意点击关闭',
         'config': {
             "version": 12,
             "unmapped_passthrough_layers": [
@@ -506,7 +531,7 @@ const examples = [
         }
     },
     {
-        'description': 'disable windows keys',
+        'description': '禁用 Windows 键',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -531,7 +556,7 @@ const examples = [
         }
     },
     {
-        'description': 'wheel switches tabs',
+        'description': '滚轮切换标签页',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -577,7 +602,7 @@ const examples = [
         }
     },
     {
-        'description': 'middle button cycles DPI',
+        'description': '中键循环切换 DPI',
         'config': {
             "version": 4,
             "unmapped_passthrough_layers": [
@@ -657,7 +682,7 @@ const examples = [
         }
     },
     {
-        'description': 'scroll wheel smoothly adjusts DPI',
+        'description': '滚轮平滑调节 DPI',
         'config': {
             "version": 13,
             "unmapped_passthrough_layers": [
@@ -767,7 +792,7 @@ const examples = [
         }
     },
     {
-        'description': 'macros: double-click and "Hello, world!"',
+        'description': '宏：双击和输入 "Hello, world!"',
         'config': {
             "version": 5,
             "unmapped_passthrough_layers": [
@@ -867,7 +892,7 @@ const examples = [
         }
     },
     {
-        'description': 'tap-hold: middle button is middle-click when clicked, but switches layer when held',
+        'description': '点按-按住：中键单击为中键点击，按住则切换层',
         'config': {
             "version": 5,
             "unmapped_passthrough_layers": [
@@ -939,7 +964,7 @@ const examples = [
         }
     },
     {
-        'description': 'tap-hold: middle button activates layer permanently when tapped, temporarily when held',
+        'description': '点按-按住：中键点按后永久激活层，按住时临时激活层',
         'config': {
             "version": 5,
             "unmapped_passthrough_layers": [
@@ -1011,7 +1036,7 @@ const examples = [
         }
     },
     {
-        'description': 'expressions: gamepad-to-mouse adapter',
+        'description': '表达式：手柄转鼠标适配器',
         'config': {
             "version": 18,
             "unmapped_passthrough_layers": [],
@@ -1205,7 +1230,7 @@ const examples = [
         }
     },
     {
-        'description': 'expressions: middle button enables mouse jiggler',
+        'description': '表达式：中键启用鼠标抖动器',
         'config': {
             "version": 6,
             "unmapped_passthrough_layers": [
@@ -1275,7 +1300,7 @@ const examples = [
         }
     },
     {
-        'description': 'swap caps lock and scroll lock LEDs',
+        'description': '交换 Caps Lock 和 Scroll Lock 指示灯',
         'config': {
             "version": 7,
             "unmapped_passthrough_layers": [
@@ -1359,7 +1384,7 @@ const examples = [
         }
     },
     {
-        'description': 'caps lock LED blinks when on',
+        'description': 'Caps Lock 开启时指示灯闪烁',
         'config': {
             "version": 7,
             "unmapped_passthrough_layers": [
@@ -1432,7 +1457,7 @@ const examples = [
         }
     },
     {
-        'description': 'caps lock LED on when layer 1 active',
+        'description': '第 1 层激活时 Caps Lock 指示灯点亮',
         'config': {
             "version": 7,
             "unmapped_passthrough_layers": [
@@ -1517,7 +1542,7 @@ const examples = [
         }
     },
     {
-        'description': 'expressions: auto-click left mouse button when cursor stops moving',
+        'description': '表达式：光标停止移动时自动点击鼠标左键',
         'config': {
             "version": 8,
             "unmapped_passthrough_layers": [
@@ -1590,7 +1615,7 @@ const examples = [
         }
     },
     {
-        'description': 'advanced autoclicker: use screen corners for right click, double click, click-drag',
+        'description': '进阶自动点击器：利用屏幕四角实现右键、双击、拖拽点击',
         'config': {
             "version": 9,
             "unmapped_passthrough_layers": [
@@ -1720,7 +1745,7 @@ const examples = [
         }
     },
     {
-        'description': 'absolute mouse: basic functionality',
+        'description': '绝对坐标鼠标：基本功能',
         'config': {
             "version": 9,
             "unmapped_passthrough_layers": [
@@ -1806,7 +1831,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard adapter for Switch with 15 degree nudges and tilt',
+        'description': 'Switch 键盘适配器（含 15 度微移和倾斜）',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [],
@@ -2220,7 +2245,7 @@ const examples = [
         }
     },
     {
-        'description': 'Stadia controller adapter for PS4',
+        'description': 'Stadia 手柄转 PS4 适配器',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [],
@@ -2629,7 +2654,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard adapter for PS4: arrows=D-pad, WASD=left stick, numpad=right stick',
+        'description': 'PS4 键盘适配器：方向键=十字键，WASD=左摇杆，小键盘=右摇杆',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [
@@ -3009,7 +3034,7 @@ const examples = [
         }
     },
     {
-        'description': 'mouse to analog stick',
+        'description': '鼠标转模拟摇杆',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [],
@@ -3098,7 +3123,7 @@ const examples = [
         }
     },
     {
-        'description': 'mouse movement to arrow keys, but number of keypresses is proportional to distance',
+        'description': '鼠标移动转方向键，按键次数与距离成正比',
         'config': {
             "version": 9,
             "unmapped_passthrough_layers": [],
@@ -3179,7 +3204,7 @@ const examples = [
         }
     },
     {
-        'description': 'Xbox controller (Bluetooth) adapter for Switch',
+        'description': 'Xbox 手柄（蓝牙）转 Switch 适配器',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [],
@@ -3526,7 +3551,7 @@ const examples = [
         }
     },
     {
-        'description': 'Xbox controller (USB) adapter for Switch',
+        'description': 'Xbox 手柄（USB）转 Switch 适配器',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [],
@@ -3873,7 +3898,7 @@ const examples = [
         }
     },
     {
-        'description': 'mirrorboard: a one-handed keyboard layout',
+        'description': 'mirrorboard：单手键盘布局',
         'config': {
             "version": 12,
             "unmapped_passthrough_layers": [
@@ -4192,7 +4217,7 @@ const examples = [
         }
     },
     {
-        'description': 'custom board v8: analog stick',
+        'description': '自制板 v8：模拟摇杆',
         'config': {
             "version": 15,
             "unmapped_passthrough_layers": [
@@ -4289,7 +4314,7 @@ const examples = [
         }
     },
     {
-        'description': 'custom board v8: analog stick as mouse',
+        'description': '自制板 v8：模拟摇杆作为鼠标',
         'config': {
             "version": 15,
             "unmapped_passthrough_layers": [
@@ -4386,7 +4411,7 @@ const examples = [
         }
     },
     {
-        'description': 'custom board v8: analog stick with auto-calibration and proper deadzone',
+        'description': '自制板 v8：带自动校准和合理死区的模拟摇杆',
         'config': {
             "version": 15,
             "unmapped_passthrough_layers": [],
@@ -4474,7 +4499,7 @@ const examples = [
         }
     },
     {
-        'description': 'custom usages for DualSense: touchpad works as mouse',
+        'description': 'DualSense 自定义 Usage：触摸板作为鼠标使用',
         'config': {
             "version": 12,
             "unmapped_passthrough_layers": [],
@@ -4752,7 +4777,7 @@ const examples = [
         }
     },
     {
-        'description': 'DualSense gyro mouse',
+        'description': 'DualSense 陀螺仪鼠标',
         'config': {
             "version": 13,
             "unmapped_passthrough_layers": [],
@@ -5130,7 +5155,7 @@ const examples = [
         }
     },
     {
-        'description': '5-key chording keyboard (A-S-D-F-space)',
+        'description': '五键并击键盘（A-S-D-F-空格）',
         'config': {
             "version": 13,
             "unmapped_passthrough_layers": [
@@ -5616,7 +5641,7 @@ const examples = [
         }
     },
     {
-        'description': 'Two mice, two cursors',
+        'description': '两个鼠标，两个光标',
         'config': {
             "version": 13,
             "unmapped_passthrough_layers": [
@@ -5748,7 +5773,7 @@ const examples = [
         }
     },
     {
-        'description': '"warpd": keyboard-driven, grid-based mouse positioning',
+        'description': '"warpd"：键盘驱动、基于网格的鼠标定位',
         'config': {
             "version": 13,
             "unmapped_passthrough_layers": [
@@ -5924,7 +5949,7 @@ const examples = [
         }
     },
     {
-        'description': 'DualSense to XAC adapter',
+        'description': 'DualSense 转 XAC 适配器',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [
@@ -6429,7 +6454,7 @@ const examples = [
         }
     },
     {
-        'description': 'Stadia controller to XAC adapter',
+        'description': 'Stadia 手柄转 XAC 适配器',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [
@@ -6757,7 +6782,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard to XAC adapter: arrows=D-pad, WASD=left stick, numpad=right stick',
+        'description': '键盘转 XAC 适配器：方向键=十字键，WASD=左摇杆，小键盘=右摇杆',
         'config': {
             "version": 16,
             "unmapped_passthrough_layers": [],
@@ -7080,7 +7105,7 @@ const examples = [
         }
     },
     {
-        'description': 'scroll wheel text input, left button accepts letter',
+        'description': '滚轮文字输入，左键确认字母',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [],
@@ -7532,7 +7557,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard SOCD: neutral',
+        'description': '键盘 SOCD：中立',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [
@@ -7629,7 +7654,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard SOCD: last input priority',
+        'description': '键盘 SOCD：后按优先',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [
@@ -7726,7 +7751,7 @@ const examples = [
         }
     },
     {
-        'description': 'keyboard SOCD: first input priority',
+        'description': '键盘 SOCD：先按优先',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [
@@ -7823,7 +7848,7 @@ const examples = [
         }
     },
     {
-        'description': 'one shot sticky modifiers',
+        'description': '单次粘滞修饰键',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [
@@ -7998,7 +8023,7 @@ const examples = [
         }
     },
     {
-        'description': 'right button is left button with turbo',
+        'description': '右键为带连发的左键',
         'config': {
             "version": 14,
             "unmapped_passthrough_layers": [
@@ -8681,7 +8706,7 @@ const examples = [
         }
     },
     {
-        'description': '3dRudder (PS4 version): analog stick',
+        'description': '3dRudder（PS4 版）：模拟摇杆',
         'config': {
             "version": 15,
             "unmapped_passthrough_layers": [
@@ -8834,7 +8859,7 @@ const examples = [
         }
     },
     {
-        'description': '3dRudder (PS4 version): mouse',
+        'description': '3dRudder（PS4 版）：鼠标',
         'config': {
             "version": 15,
             "unmapped_passthrough_layers": [
@@ -8987,7 +9012,7 @@ const examples = [
         }
     },
     {
-        'description': 'touchpad as analog sticks on a PS4 fightstick',
+        'description': 'PS4 街机摇杆上触摸板作为模拟摇杆',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9222,7 +9247,7 @@ const examples = [
         }
     },
     {
-        'description': 'analog stick cardinal directions to D-pad',
+        'description': '模拟摇杆主方向转十字键',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9342,7 +9367,7 @@ const examples = [
         }
     },
     {
-        'description': 'analog stick cardinal directions to buttons',
+        'description': '模拟摇杆主方向转按键',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9462,7 +9487,7 @@ const examples = [
         }
     },
     {
-        'description': 'analog stick to L2/R2',
+        'description': '模拟摇杆转 L2/R2',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9582,7 +9607,7 @@ const examples = [
         }
     },
     {
-        'description': 'ROT13 keyboard',
+        'description': 'ROT13 键盘',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -10018,7 +10043,7 @@ const examples = [
         }
     },
     {
-        'description': 'D-pad (hat switch) as analog stick',
+        'description': '十字键（hat switch）作为模拟摇杆',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [

@@ -1,33 +1,32 @@
 <!doctype html>
-<html style="scrollbar-gutter: stable both-edges;">
+<html lang="zh-CN" style="scrollbar-gutter: stable both-edges;">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>HID Remapper Configuration</title>
+    <title>HID Remapper 配置工具</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="code.js" type="module"></script>
-    </script>
 </head>
 
 <body>
 
     <div class="container d-flex flex-column" style="max-width: 720px; min-height: 100vh;">
 
-        <h1 class="mt-sm-5 mt-3">HID Remapper Configuration</h1>
+        <h1 class="mt-sm-5 mt-3">HID Remapper 配置工具</h1>
 
         <div class="row my-4">
             <div class="col">
-                <button id="open_device" type="button" class="btn btn-primary w-100">Open device</button>
+                <button id="open_device" type="button" class="btn btn-primary w-100">打开设备</button>
             </div>
             <div class="col">
-                <button id="load_from_device" type="button" class="btn btn-primary w-100">Load from device</button>
+                <button id="load_from_device" type="button" class="btn btn-primary w-100">从设备加载</button>
             </div>
             <div class="col">
                 <button id="save_to_device" type="button" class="btn btn-primary w-100 position-relative">
                     <span id="save_to_device_checkmark" class="position-absolute top-0 start-100 translate-middle badge bg-success rounded-pill hub_port_badge d-none">&check;</span>
-                    <span>Save to device</span>
+                    <span>保存到设备</span>
                 </button>
             </div>
         </div>
@@ -35,13 +34,13 @@
         <div id="error" class="alert alert-danger d-none"></div>
 
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="nav-mappings-tab" data-bs-toggle="tab" data-bs-target="#nav-mappings" type="button" role="tab">Mappings</button>
-            <button class="nav-link" id="nav-settings-tab" data-bs-toggle="tab" data-bs-target="#nav-settings" type="button" role="tab">Settings</button>
-            <button class="nav-link" id="nav-macros-tab" data-bs-toggle="tab" data-bs-target="#nav-macros" type="button" role="tab">Macros</button>
-            <button class="nav-link" id="nav-expressions-tab" data-bs-toggle="tab" data-bs-target="#nav-expressions" type="button" role="tab">Expressions</button>
-            <button class="nav-link" id="nav-actions-tab" data-bs-toggle="tab" data-bs-target="#nav-actions" type="button" role="tab">Actions</button>
-            <button class="nav-link" id="nav-monitor-tab" data-bs-toggle="tab" data-bs-target="#nav-monitor" type="button" role="tab">Monitor</button>
-            <button class="nav-link" id="nav-examples-tab" data-bs-toggle="tab" data-bs-target="#nav-examples" type="button" role="tab">Examples</button>
+            <button class="nav-link active" id="nav-mappings-tab" data-bs-toggle="tab" data-bs-target="#nav-mappings" type="button" role="tab">映射</button>
+            <button class="nav-link" id="nav-settings-tab" data-bs-toggle="tab" data-bs-target="#nav-settings" type="button" role="tab">设置</button>
+            <button class="nav-link" id="nav-macros-tab" data-bs-toggle="tab" data-bs-target="#nav-macros" type="button" role="tab">宏</button>
+            <button class="nav-link" id="nav-expressions-tab" data-bs-toggle="tab" data-bs-target="#nav-expressions" type="button" role="tab">表达式</button>
+            <button class="nav-link" id="nav-actions-tab" data-bs-toggle="tab" data-bs-target="#nav-actions" type="button" role="tab">操作</button>
+            <button class="nav-link" id="nav-monitor-tab" data-bs-toggle="tab" data-bs-target="#nav-monitor" type="button" role="tab">监视器</button>
+            <button class="nav-link" id="nav-examples-tab" data-bs-toggle="tab" data-bs-target="#nav-examples" type="button" role="tab">示例</button>
         </div>
 
         <div class="tab-content flex-grow-1">
@@ -52,15 +51,15 @@
                     <div style="min-width: 720px; width: 100%;">
                         <div class="row my-2 align-items-end">
                             <div class="col-1"></div>
-                            <div class="col-3 text-center"><a href="#" id="input-column-header" class="text-decoration-none text-reset d-block">Input</a></div>
-                            <div class="col-3 text-center"><a href="#" id="output-column-header" class="text-decoration-none text-reset d-block">Output</a></div>
+                            <div class="col-3 text-center"><a href="#" id="input-column-header" class="text-decoration-none text-reset d-block">输入</a></div>
+                            <div class="col-3 text-center"><a href="#" id="output-column-header" class="text-decoration-none text-reset d-block">输出</a></div>
                             <div class="col-3">
                                 <div class="d-flex align-items-end">
-                                    <div class="flex-fill text-center"><a href="#" id="layer-column-header" class="text-decoration-none text-reset d-block">Layer</a></div>
-                                    <div class="text-start pt-1" style="writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2em;">Sticky<br>Tap<br>Hold</div>
+                                    <div class="flex-fill text-center"><a href="#" id="layer-column-header" class="text-decoration-none text-reset d-block">层</a></div>
+                                    <div class="text-start pt-1" style="writing-mode: vertical-rl; text-orientation: upright; line-height: 1.2em;">粘滞<br>点击<br>按住</div>
                                 </div>
                             </div>
-                            <div class="col-2 text-center">Scaling</div>
+                            <div class="col-2 text-center">缩放</div>
                         </div>
 
                         <div id="mappings">
@@ -69,7 +68,7 @@
                 </div>
 
                 <div class="text-center mt-2 mb-3">
-                    <button id="add_mapping" type="button" class="btn btn-primary">Add mapping</button>
+                    <button id="add_mapping" type="button" class="btn btn-primary">添加映射</button>
                 </div>
 
             </div>
@@ -78,7 +77,7 @@
 
                 <div class="row mt-4">
                     <div class="col-4 text-end">
-                        Unmapped inputs passthrough on layer
+                        未映射的输入在层上直通
                     </div>
                     <div class="col-8">
                         <div class="form-check form-check-inline">
@@ -117,7 +116,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="partial_scroll_timeout_input" class="col-form-label">Partial scroll timeout</label>
+                        <label for="partial_scroll_timeout_input" class="col-form-label">部分滚动超时</label>
                     </div>
                     <div class="col-auto">
                         <div class="input-group">
@@ -128,7 +127,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="tap_hold_threshold_input" class="col-form-label">Tap-hold threshold</label>
+                        <label for="tap_hold_threshold_input" class="col-form-label">点按-按住阈值</label>
                     </div>
                     <div class="col-auto">
                         <div class="input-group">
@@ -139,7 +138,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="gpio_debounce_time_input" class="col-form-label">GPIO debounce time</label>
+                        <label for="gpio_debounce_time_input" class="col-form-label">GPIO 消抖时间</label>
                     </div>
                     <div class="col-auto">
                         <div class="input-group">
@@ -150,7 +149,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="macro_entry_duration_input" class="col-form-label">Macro step duration</label>
+                        <label for="macro_entry_duration_input" class="col-form-label">宏步骤持续时间</label>
                     </div>
                     <div class="col-auto">
                         <div class="input-group">
@@ -161,11 +160,11 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="interval_override_dropdown" class="col-form-label">Override polling rate</label>
+                        <label for="interval_override_dropdown" class="col-form-label">覆盖轮询率</label>
                     </div>
                     <div class="col-auto">
                         <select class="form-select" id="interval_override_dropdown">
-                            <option value="0">don't override</option>
+                            <option value="0">不覆盖</option>
                             <option value="16">62.5 Hz</option>
                             <option value="8">125 Hz</option>
                             <option value="4">250 Hz</option>
@@ -176,44 +175,44 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="our_descriptor_number_dropdown" class="col-form-label">Emulated device type</label>
+                        <label for="our_descriptor_number_dropdown" class="col-form-label">模拟设备类型</label>
                     </div>
                     <div class="col-auto">
                         <select class="form-select" id="our_descriptor_number_dropdown">
-                            <option value="0">Mouse and keyboard</option>
-                            <option value="1">Absolute mouse and keyboard</option>
-                            <option value="2">Switch gamepad</option>
-                            <option value="3">PS4 arcade stick</option>
-                            <option value="4">Stadia controller</option>
-                            <option value="5">XAC/Flex compatible</option>
+                            <option value="0">鼠标和键盘</option>
+                            <option value="1">绝对坐标鼠标和键盘</option>
+                            <option value="2">Switch 手柄</option>
+                            <option value="3">PS4 街机摇杆</option>
+                            <option value="4">Stadia 控制器</option>
+                            <option value="5">XAC/Flex 兼容</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="input_labels_dropdown" class="col-form-label">Input labels</label>
+                        <label for="input_labels_dropdown" class="col-form-label">输入标签</label>
                     </div>
                     <div class="col-auto">
                         <select class="form-select" id="input_labels_dropdown">
-                            <option value="0">mouse</option>
-                            <option value="1">gamepad</option>
+                            <option value="0">鼠标</option>
+                            <option value="1">手柄</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="gpio_output_mode_dropdown" class="col-form-label">GPIO output mode</label>
+                        <label for="gpio_output_mode_dropdown" class="col-form-label">GPIO 输出模式</label>
                     </div>
                     <div class="col-auto">
                         <select class="form-select" id="gpio_output_mode_dropdown">
-                            <option value="0">0=low, 1=high</option>
-                            <option value="1">0=high impedance, 1=low</option>
+                            <option value="0">0=低电平, 1=高电平</option>
+                            <option value="1">0=高阻态, 1=低电平</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="ignore_auth_dev_inputs_checkbox" class="col-form-label">Ignore auth device inputs</label>
+                        <label for="ignore_auth_dev_inputs_checkbox" class="col-form-label">忽略认证设备输入</label>
                     </div>
                     <div class="col-auto">
                         <input type="checkbox" id="ignore_auth_dev_inputs_checkbox" class="form-check-input align-middle">
@@ -221,30 +220,30 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-4 text-end">
-                        <label for="normalize_gamepad_inputs_checkbox" class="col-form-label">Normalize gamepad inputs</label>
+                        <label for="normalize_gamepad_inputs_checkbox" class="col-form-label">标准化手柄输入</label>
                     </div>
                     <div class="col-auto">
                         <input type="checkbox" id="normalize_gamepad_inputs_checkbox" class="form-check-input align-middle">
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <p><em>Changes to the emulated device type become active after disconnecting and reconnecting HID Remapper.</em></p>
-                    <p><em>Changes to gamepad input normalization are applied after re-plugging the device or HID Remapper.</em></p>
+                    <p><em>模拟设备类型的更改需在断开并重新连接 HID Remapper 后生效。</em></p>
+                    <p><em>手柄输入标准化的更改需在重新插拔设备或 HID Remapper 后生效。</em></p>
                 </div>
 
-                <h5 class="mt-4">Custom usages</h5>
+                <h5 class="mt-4">自定义 Usage</h5>
 
                 <div id="quirks_container">
 
                 </div>
                 <div class="mt-4">
-                    <button id="add_quirk" type="button" class="btn btn-primary">Add usage</button>
+                    <button id="add_quirk" type="button" class="btn btn-primary">添加 Usage</button>
                 </div>
 
                 <div class="row mt-3">
-                    <em>If both Vendor ID and Product ID are zero, usage applies to all interfaces on all devices.<br>
-                    Set size to zero to remove an existing usage.<br>
-                    Custom usages are only applied after re-plugging the device or HID Remapper.</em>
+                    <em>如果厂商 ID 和产品 ID 均为零，则该 Usage 适用于所有设备的所有接口。<br>
+                    将大小设为零可移除现有的 Usage。<br>
+                    自定义 Usage 仅在重新插拔设备或 HID Remapper 后生效。</em>
                 </div>
             </div>
 
@@ -263,7 +262,7 @@
                 </div>
 
                 <div class="row mt-4">
-                    <em>Expression /* comments */ are not saved to device, but they are preserved in exported JSON files.</em>
+                    <em>表达式中的 /* 注释 */ 不会保存到设备，但会保留在导出的 JSON 文件中。</em>
                 </div>
             </div>
 
@@ -271,28 +270,28 @@
 
                 <div class="row mt-4">
                     <div class="col-4">
-                        <button id="download_json" type="button" class="btn btn-primary w-100">Export JSON</button>
+                        <button id="download_json" type="button" class="btn btn-primary w-100">导出 JSON</button>
                     </div>
                     <div class="col-4">
-                        <button id="upload_json" type="button" class="btn btn-primary w-100">Import JSON</button>
+                        <button id="upload_json" type="button" class="btn btn-primary w-100">导入 JSON</button>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-4">
-                        <button id="flash_firmware" type="button" class="btn btn-primary w-100">Flash firmware</button>
+                        <button id="flash_firmware" type="button" class="btn btn-primary w-100">烧录固件</button>
                     </div>
                     <div class="col-4" id="flash_b_side_container">
-                        <button id="flash_b_side" type="button" class="btn btn-primary w-100">Flash B side</button>
+                        <button id="flash_b_side" type="button" class="btn btn-primary w-100">烧录 B 面</button>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-4 d-none" id="pair_new_device_container">
-                        <button id="pair_new_device" type="button" class="btn btn-primary w-100">Pair new device</button>
+                        <button id="pair_new_device" type="button" class="btn btn-primary w-100">配对新设备</button>
                     </div>
                     <div class="col-4 d-none" id="clear_bonds_container">
-                        <button id="clear_bonds" type="button" class="btn btn-primary w-100">Forget all devices</button>
+                        <button id="clear_bonds" type="button" class="btn btn-primary w-100">忘记所有设备</button>
                     </div>
                 </div>
 
@@ -300,19 +299,19 @@
 
             <div class="tab-pane" id="nav-monitor" role="tabpanel" tabindex="0">
 
-                <p class="mt-4">Interact with the device connected to HID Remapper to see what usage codes it generates.</p>
+                <p class="mt-4">操作连接到 HID Remapper 的设备，查看它生成的 usage 代码。</p>
 
                 <div>
-                    <button id="monitor_clear" type="button" class="btn btn-primary">Clear</button>
+                    <button id="monitor_clear" type="button" class="btn btn-primary">清除</button>
                 </div>
 
                 <div id="monitor_header" class="row p-1 mt-4 mb-2 d-none">
                     <div class="col-1 text-center"></div>
                     <div class="col-2 text-center monitor_usage">Usage</div>
                     <div class="col-3 text-center monitor_readable_name"></div>
-                    <div class="col-2 text-center monitor_last_value">Last value</div>
-                    <div class="col-2 text-center monitor_min_value">Min value</div>
-                    <div class="col-2 text-center monitor_max_value">Max value</div>
+                    <div class="col-2 text-center monitor_last_value">最新值</div>
+                    <div class="col-2 text-center monitor_min_value">最小值</div>
+                    <div class="col-2 text-center monitor_max_value">最大值</div>
                 </div>
 
                 <div id="monitor_container">
@@ -331,7 +330,7 @@
         </div>
 
         <div class="text-center text-muted mt-4 mb-4">
-            For more information, see <a class="text-reset" href="https://www.remapper.org/">remapper.org</a>.
+            更多信息请访问 <a class="text-reset" href="https://www.remapper.org/">remapper.org</a>。
         </div>
 
     </div>
@@ -342,13 +341,13 @@
             <div class="col-3">
                 <button type="button" class="btn btn-primary w-100 source_button position-relative">
                     <span class="position-absolute top-50 start-0 translate-middle badge bg-info rounded-pill hub_port_badge">0</span>
-                    <span class="button_label">source</span>
+                    <span class="button_label">源</span>
                 </button>
             </div>
             <div class="col-3">
                 <button type="button" class="btn btn-primary w-100 target_button position-relative">
                     <span class="position-absolute top-50 start-0 translate-middle badge bg-info rounded-pill hub_port_badge">0</span>
-                    <span class="button_label">target</span>
+                    <span class="button_label">目标</span>
                 </button>
             </div>
             <div class="col-3">
@@ -388,15 +387,15 @@
                         </div>
                     </div>
                     <div class="row gx-1">
-                        <div class="col-auto ms-1" title="Sticky">
+                        <div class="col-auto ms-1" title="粘滞">
                             <input class="form-check-input sticky_checkbox" type="checkbox" value="">
                             <br><span class="text-muted small">S</span>
                         </div>
-                        <div class="col-auto" title="Tap">
+                        <div class="col-auto" title="点击">
                             <input class="form-check-input tap_checkbox" type="checkbox" value="">
                             <br><span class="text-muted small">T</span>
                         </div>
-                        <div class="col-auto" title="Hold">
+                        <div class="col-auto" title="按住">
                             <input class="form-check-input hold_checkbox" type="checkbox" value="">
                             <br><span class="text-muted small">H</span>
                         </div>
@@ -419,7 +418,7 @@
         <div class="accordion-item" id="macro_N">
             <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_X">
-                    <span class="macro_name flex-shrink-0">Macro N</span>
+                    <span class="macro_name flex-shrink-0">宏 N</span>
                     <span class="macro_preview text-muted px-3 flex-fill text-truncate"></span>
                 </button>
             </h2>
@@ -448,21 +447,21 @@
         <div class="btn-group macro_item col-auto">
             <button type="button" class="delete_macro_item btn btn-primary">×</button>
             <button type="button" class="macro_item_usage btn btn-primary" data-hid-usage="0x00000000">
-                <span class="button_label">Nothing</span>
+                <span class="button_label">无操作</span>
             </button>
         </div>
     </template>
 
     <template id="expression_template">
         <div class="mb-3">
-            <label class="form-label expression_label">Expression</label>
+            <label class="form-label expression_label">表达式</label>
             <textarea type="text" class="form-control expression_input font-monospace" rows="1" spellcheck="false"></textarea>
         </div>
     </template>
 
     <template id="monitor_template">
         <div class="row monitor_row p-1 my-2 rounded">
-            <div class="col-1"><button type="button" title="map this" class="btn btn-sm btn-primary map_this_button" style="padding: 0rem 0.4rem;">+</button></div>
+            <div class="col-1"><button type="button" title="映射此项" class="btn btn-sm btn-primary map_this_button" style="padding: 0rem 0.4rem;">+</button></div>
             <div class="col-2 text-center monitor_usage position-relative">
                 <span class="position-absolute top-50 start-0 translate-middle badge bg-info rounded-pill hub_port_badge">0</span>
                 <span class="font-monospace usage_label"></span>
@@ -481,25 +480,25 @@
                     <button type="button" class="btn btn-primary delete_button">×</button>
                 </div>
                 <div class="col-3">
-                    <label class="col-form-label">Vendor ID</label>
+                    <label class="col-form-label">厂商 ID</label>
                     <div class="input-group">
                         <span class="input-group-text">0x</span>
                         <input type="text" class="form-control vendor_id_input text-end">
                     </div>
                 </div>
                 <div class="col-3">
-                    <label class="col-form-label">Product ID</label>
+                    <label class="col-form-label">产品 ID</label>
                     <div class="input-group">
                         <span class="input-group-text">0x</span>
                         <input type="text" class="form-control product_id_input text-end">
                     </div>
                 </div>
                 <div class="col-2">
-                    <label class="col-form-label">Interface</label>
+                    <label class="col-form-label">接口</label>
                     <input type="number" min="0" max="255" class="form-control interface_input text-end">
                 </div>
                 <div class="col-2">
-                    <label class="col-form-label">Report ID</label>
+                    <label class="col-form-label">报告 ID</label>
                     <input type="number" min="0" max="255" class="form-control report_id_input text-end">
                 </div>
             </div>
@@ -509,11 +508,11 @@
                 <div class="col-3 pt-4">
                     <div class="form-check">
                         <input class="form-check-input relative_checkbox" type="checkbox" value="">
-                        <label class="form-check-label relative_checkbox_label">Relative</label>
+                        <label class="form-check-label relative_checkbox_label">相对</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input signed_checkbox" type="checkbox" value="">
-                        <label class="form-check-label signed_checkbox_label">Signed</label>
+                        <label class="form-check-label signed_checkbox_label">有符号</label>
                     </div>
                 </div>
                 <div class="col-3">
@@ -524,11 +523,11 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <label class="col-form-label">Size</label>
+                    <label class="col-form-label">大小</label>
                     <input type="number" min="0" max="32" class="form-control size_input text-end">
                 </div>
                 <div class="col-2">
-                    <label class="col-form-label">Position</label>
+                    <label class="col-form-label">位置</label>
                     <input type="number" min="0" max="511" class="form-control bitpos_input text-end">
                 </div>
             </div>
@@ -539,17 +538,17 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title usage_modal_title">Select input</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title usage_modal_title">选择输入</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body" style="overflow-y: scroll;">
                     <div class="row hub_port_container">
                         <div class="col-auto">
-                            <label for="source_port_dropdown" class="col-form-label">Port</label>
+                            <label for="source_port_dropdown" class="col-form-label">端口</label>
                         </div>
                         <div class="col-auto">
                             <select class="form-select hub_port_dropdown" id="source_port_dropdown">
-                                <option value="0">all</option>
+                                <option value="0">全部</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -570,19 +569,19 @@
                         <div class="col">
                         </div>
                         <div class="col-auto">
-                            <label for="input_labels_modal_dropdown" class="col-form-label">Input labels</label>
+                            <label for="input_labels_modal_dropdown" class="col-form-label">输入标签</label>
                         </div>
                         <div class="col-auto">
                             <select class="form-select" id="input_labels_modal_dropdown">
-                                <option value="0">mouse</option>
-                                <option value="1">gamepad</option>
+                                <option value="0">鼠标</option>
+                                <option value="1">手柄</option>
                             </select>
                         </div>
                         <div class="col">
                         </div>
                         <div class="col-3 position-relative">
                             <span class="position-absolute top-50 start-100 badge bg-success rounded-pill have_preferred_result_checkmark d-none" style="translate: -100% -50%">&check;</span>
-                            <input type="text" class="form-control usage_search_box" placeholder="Search">
+                            <input type="text" class="form-control usage_search_box" placeholder="搜索">
                         </div>
                     </div>
                     <div class="col mouse_usages mt-3">
@@ -606,17 +605,17 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title usage_modal_title">Select output</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title usage_modal_title">选择输出</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
                 </div>
                 <div class="modal-body" style="overflow-y: scroll;">
                     <div class="row hub_port_container">
                         <div class="col-auto hub_port_inputs">
-                            <label for="target_port_dropdown" class="col-form-label">Port</label>
+                            <label for="target_port_dropdown" class="col-form-label">端口</label>
                         </div>
                         <div class="col-auto hub_port_inputs">
                             <select class="form-select hub_port_dropdown" id="target_port_dropdown">
-                                <option value="0">all</option>
+                                <option value="0">全部</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -638,7 +637,7 @@
                         </div>
                         <div class="col-3 position-relative">
                             <span class="position-absolute top-50 start-100 badge bg-success rounded-pill have_preferred_result_checkmark d-none" style="translate: -100% -50%">&check;</span>
-                            <input type="text" class="form-control usage_search_box" placeholder="Search">
+                            <input type="text" class="form-control usage_search_box" placeholder="搜索">
                         </div>
                     </div>
                     <div class="col mouse_usages mt-3">
