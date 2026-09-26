@@ -1,6 +1,6 @@
 const examples = [
     {
-        'description': '将 A 和 Caps Lock 交换映射',
+        'description': '交换 A 和 Caps Lock 键位',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -68,7 +68,7 @@ const examples = [
         }
     },
     {
-        'description': '中键为 Ctrl-C，右键为 Ctrl-V',
+        'description': '鼠标中键为 Ctrl-C，右键为 Ctrl-V',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -253,7 +253,7 @@ const examples = [
         }
     },
     {
-        'description': '按住 Caps Lock 时方向键作为鼠标使用',
+        'description': '按住 Caps Lock 时方向键用作鼠标',
         'config': {
             "version": 3,
             "unmapped_passthrough": true,
@@ -892,7 +892,7 @@ const examples = [
         }
     },
     {
-        'description': '点按-按住：中键单击为中键点击，按住则切换层',
+        'description': '点按-按住：轻点中键为中键点击，按住则切换层',
         'config': {
             "version": 5,
             "unmapped_passthrough_layers": [
@@ -964,7 +964,7 @@ const examples = [
         }
     },
     {
-        'description': '点按-按住：中键点按后永久激活层，按住时临时激活层',
+        'description': '点按-按住：轻点中键永久激活层，按住时临时激活层',
         'config': {
             "version": 5,
             "unmapped_passthrough_layers": [
@@ -1615,7 +1615,7 @@ const examples = [
         }
     },
     {
-        'description': '进阶自动点击器：利用屏幕四角实现右键、双击、拖拽点击',
+        'description': '进阶自动点击器：利用屏幕四角实现右键、双击、点击拖拽',
         'config': {
             "version": 9,
             "unmapped_passthrough_layers": [
@@ -4499,7 +4499,7 @@ const examples = [
         }
     },
     {
-        'description': 'DualSense 自定义 Usage：触摸板作为鼠标使用',
+        'description': 'DualSense 自定义 Usage：触摸板用作鼠标',
         'config': {
             "version": 12,
             "unmapped_passthrough_layers": [],
@@ -9012,7 +9012,7 @@ const examples = [
         }
     },
     {
-        'description': 'PS4 街机摇杆上触摸板作为模拟摇杆',
+        'description': 'PS4 街机摇杆：触摸板用作模拟摇杆',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9247,7 +9247,7 @@ const examples = [
         }
     },
     {
-        'description': '模拟摇杆主方向转十字键',
+        'description': '模拟摇杆四方向转十字键',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -9367,7 +9367,7 @@ const examples = [
         }
     },
     {
-        'description': '模拟摇杆主方向转按键',
+        'description': '模拟摇杆四方向转按键',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [
@@ -10043,7 +10043,7 @@ const examples = [
         }
     },
     {
-        'description': '十字键（hat switch）作为模拟摇杆',
+        'description': '十字键（hat switch）用作模拟摇杆',
         'config': {
             "version": 17,
             "unmapped_passthrough_layers": [

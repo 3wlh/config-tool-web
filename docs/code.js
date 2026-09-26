@@ -249,7 +249,7 @@ async function open_device() {
         if (config_interface !== undefined) {
             device = config_interface;
             if (!device.opened) {
-                await device.open().catch((err) => { display_error(err + "\n如果您使用的是 Linux，可能需要为自己授予相应的 /dev/hidraw* 设备权限。"); });
+                await device.open().catch((err) => { display_error(err + "\n如果您使用的是 Linux，可能需要为当前用户授予相应 /dev/hidraw* 设备的权限。"); });
             }
             success = device.opened;
             success &&= await check_device_version();
@@ -854,7 +854,7 @@ async function flash_firmware() {
 }
 
 async function flash_b_side() {
-    display_error("现在应为 B 面烧录与 A 面匹配的固件版本。请断开并重新连接设备。");
+    display_error("即将为 B 面烧录与 A 面匹配的固件版本。请断开并重新连接设备。");
     await send_feature_command(FLASH_B_SIDE);
 }
 
@@ -1082,21 +1082,21 @@ function expression_onchange(i) {
         }
         if (op.toLowerCase().startsWith('0x')) {
             if (isNaN(parseInt(op, 16))) {
-                throw new Error('表达式无效: "' + op + '"');
+                throw new Error('表达式无效："' + op + '"');
             }
             return op;
         }
         if (/^[0-9-]/.test(op)) {
             const x = parseFloat(op);
             if (isNaN(x)) {
-                throw new Error('表达式无效: "' + op + '"');
+                throw new Error('表达式无效："' + op + '"');
             }
             return Math.round(x * 1000).toString();
         }
         if ((op.toUpperCase() in ops) && !['PUSH', 'PUSH_USAGE'].includes(op.toUpperCase())) {
             return op.toLowerCase();
         }
-        throw new Error('表达式无效: "' + op + '"');
+        throw new Error('表达式无效："' + op + '"');
     }
 
     return function () {
@@ -1606,7 +1606,7 @@ function expr_to_elems(expr) {
         if (elem.toUpperCase() in ops) {
             return [ops[elem.toUpperCase()]];
         }
-        throw new Error('表达式无效: "' + elem + '"');
+        throw new Error('表达式无效："' + elem + '"');
     }
 
     return [...expr.matchAll(expr_re).map(x => x[2])].join('').split(/\s+/).filter((x) => (x.length > 0)).map(convert_elem);
